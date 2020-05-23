@@ -1,0 +1,44 @@
+server:
+  port: 9093
+
+spring:
+  application:
+    name: springcloud-eureka-zuul
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9090/eureka/
+
+zuul:
+  ribbon:
+    eager-load:
+      enabled: true
+      clients: springcloud-eureka-client,springcloud-eureka-system
+  ignoredServices: '*'
+  routes:
+    springcloud-eureka-client:
+      path: /client/**
+      serviceId: springcloud-eureka-client
+      stripPrefix: true
+    springcloud-eureka-system:
+      path: /system/**
+      serviceId: springcloud-eureka-system
+      stripPrefix: true
+  #“Authorization”请求头,经过zuul转发后丢失了，解决办法，sensitive-headers清空
+  sensitive-headers:
+
+ribbon:
+  ReadTimeout: 5000
+  SocketTimeout: 5000
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2500
+
+

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.mapper.JlPartitionMapper">
+    
+    <resultMap type="JlPartition" id="JlPartitionResult">
+        <result property="id"    column="id"    />
+        <result property="proId"    column="pro_id"    />
+        <result property="proName"    column="pro_name"    />
+        <result property="secId"    column="sec_id"    />
+        <result property="secName"    column="sec_name"    />
+        <result property="secCode"    column="sec_code"    />
+        <result property="unitName"    column="unit_name"    />
+        <result property="unitCode"    column="unit_code"    />
+        <result property="unitParentId"    column="unit_parent_id"    />
+        <result property="unitLevel"    column="unit_level"    />
+        <result property="unitLevelName"    column="unit_level_name"    />
+        <result property="unitOrder"    column="unit_order"    />
+        <result property="finishState"    column="finish_state"    />
+        <result property="cuName"    column="cu_name"    />
+        <result property="cpName"    column="cp_name"    />
+        <result property="ccpName"    column="ccp_name"    />
+        <result property="ckName"    column="ck_name"    />
+        <result property="cckName"    column="cck_name"    />
+        <result property="disabled"    column="disabled"    />
+        <result property="createUserid"    column="create_userid"    />
+        <result property="createUsername"    column="create_username"    />
+        <result property="createDatetime"    column="create_datetime"    />
+        <result property="createIp"    column="create_ip"    />
+        <result property="updateUserid"    column="update_userid"    />
+        <result property="updateUsername"    column="update_username"    />
+        <result property="updateDatetime"    column="update_datetime"    />
+        <result property="updateIp"    column="update_ip"    />
+    </resultMap>
+
+    <sql id="selectJlPartitionVo">
+        select id, pro_id, pro_name, sec_id, sec_name, sec_code, unit_name, unit_code, unit_parent_id, unit_level, unit_level_name, unit_order, finish_state, cu_name, cp_name, ccp_name, ck_name, cck_name, disabled, create_userid, create_username, create_datetime, create_ip, update_userid, update_username, update_datetime, update_ip from jl_partition
+    </sql>
+
+    <select id="selectJlPartitionList" parameterType="JlPartition" resultMap="JlPartitionResult">
+        <include refid="selectJlPartitionVo"/>
+        <where>  
+            <if test="proId != null "> and pro_id = #{proId}</if>
+            <if test="proName != null  and proName != ''"> and pro_name like  '%' || #{proName} || '%'</if>
+            <if test="secId != null "> and sec_id = #{secId}</if>
+            <if test="secName != null  and secName != ''"> and sec_name like  '%' || #{secName} || '%'</if>
+            <if test="secCode != null  and secCode != ''"> and sec_code = #{secCode}</if>
+            <if test="unitName != null  and unitName != ''"> and unit_name like  '%' || #{unitName} || '%'</if>
+            <if test="unitCode != null  and unitCode != ''"> and unit_code = #{unitCode}</if>
+            <if test="unitParentId != null "> and unit_parent_id = #{unitParentId}</if>
+            <if test="unitLevel != null "> and unit_level = #{unitLevel}</if>
+            <if test="unitLevelName != null  and unitLevelName != ''"> and unit_level_name like  '%' || #{unitLevelName} || '%'</if>
+            <if test="unitOrder != null "> and unit_order = #{unitOrder}</if>
+            <if test="finishState != null "> and finish_state = #{finishState}</if>
+            <if test="cuName != null  and cuName != ''"> and cu_name like  '%' || #{cuName} || '%'</if>
+            <if test="cpName != null  and cpName != ''"> and cp_name like  '%' || #{cpName} || '%'</if>
+            <if test="ccpName != null  and ccpName != ''"> and ccp_name like  '%' || #{ccpName} || '%'</if>
+            <if test="ckName != null  and ckName != ''"> and ck_name like  '%' || #{ckName} || '%'</if>
+            <if test="cckName != null  and cckName != ''"> and cck_name like  '%' || #{cckName} || '%'</if>
+            <if test="disabled != null "> and disabled = #{disabled}</if>
+            <if test="createUserid != null "> and create_userid = #{createUserid}</if>
+            <if test="createUsername != null  and createUsername != ''"> and create_username like  '%' || #{createUsername} || '%'</if>
+            <if test="createDatetime != null "> and create_datetime = #{createDatetime}</if>
+            <if test="createIp != null  and createIp != ''"> and create_ip = #{createIp}</if>
+            <if test="updateUserid != null "> and update_userid = #{updateUserid}</if>
+            <if test="updateUsername != null  and updateUsername != ''"> and update_username like  '%' || #{updateUsername} || '%'</if>
+            <if test="updateDatetime != null "> and update_datetime = #{updateDatetime}</if>
+            <if test="updateIp != null  and updateIp != ''"> and update_ip = #{updateIp}</if>
+        </where>
+    </select>
+    
+    <select id="selectJlPartitionById" parameterType="Long" resultMap="JlPartitionResult">
+        <include refid="selectJlPartitionVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertJlPartition" parameterType="JlPartition" useGeneratedKeys="true" keyProperty="id">
+        insert into jl_partition
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="proId != null ">pro_id,</if>
+            <if test="proName != null  and proName != ''">pro_name,</if>
+            <if test="secId != null ">sec_id,</if>
+            <if test="secName != null  and secName != ''">sec_name,</if>
+            <if test="secCode != null  and secCode != ''">sec_code,</if>
+            <if test="unitName != null  and unitName != ''">unit_name,</if>
+            <if test="unitCode != null  and unitCode != ''">unit_code,</if>
+            <if test="unitParentId != null ">unit_parent_id,</if>
+            <if test="unitLevel != null ">unit_level,</if>
+            <if test="unitLevelName != null  and unitLevelName != ''">unit_level_name,</if>
+            <if test="unitOrder != null ">unit_order,</if>
+            <if test="finishState != null ">finish_state,</if>
+            <if test="cuName != null  and cuName != ''">cu_name,</if>
+            <if test="cpName != null  and cpName != ''">cp_name,</if>
+            <if test="ccpName != null  and ccpName != ''">ccp_name,</if>
+            <if test="ckName != null  and ckName != ''">ck_name,</if>
+            <if test="cckName != null  and cckName != ''">cck_name,</if>
+            <if test="disabled != null ">disabled,</if>
+            <if test="createUserid != null ">create_userid,</if>
+            <if test="createUsername != null  and createUsername != ''">create_username,</if>
+            <if test="createDatetime != null ">create_datetime,</if>
+            <if test="createIp != null  and createIp != ''">create_ip,</if>
+            <if test="updateUserid != null ">update_userid,</if>
+            <if test="updateUsername != null  and updateUsername != ''">update_username,</if>
+            <if test="updateDatetime != null ">update_datetime,</if>
+            <if test="updateIp != null  and updateIp != ''">update_ip,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="proId != null ">#{proId},</if>
+            <if test="proName != null  and proName != ''">#{proName},</if>
+            <if test="secId != null ">#{secId},</if>
+            <if test="secName != null  and secName != ''">#{secName},</if>
+            <if test="secCode != null  and secCode != ''">#{secCode},</if>
+            <if test="unitName != null  and unitName != ''">#{unitName},</if>
+            <if test="unitCode != null  and unitCode != ''">#{unitCode},</if>
+            <if test="unitParentId != null ">#{unitParentId},</if>
+            <if test="unitLevel != null ">#{unitLevel},</if>
+            <if test="unitLevelName != null  and unitLevelName != ''">#{unitLevelName},</if>
+            <if test="unitOrder != null ">#{unitOrder},</if>
+            <if test="finishState != null ">#{finishState},</if>
+            <if test="cuName != null  and cuName != ''">#{cuName},</if>
+            <if test="cpName != null  and cpName != ''">#{cpName},</if>
+            <if test="ccpName != null  and ccpName != ''">#{ccpName},</if>
+            <if test="ckName != null  and ckName != ''">#{ckName},</if>
+            <if test="cckName != null  and cckName != ''">#{cckName},</if>
+            <if test="disabled != null ">#{disabled},</if>
+            <if test="createUserid != null ">#{createUserid},</if>
+            <if test="createUsername != null  and createUsername != ''">#{createUsername},</if>
+            <if test="createDatetime != null ">#{createDatetime},</if>
+            <if test="createIp != null  and createIp != ''">#{createIp},</if>
+            <if test="updateUserid != null ">#{updateUserid},</if>
+            <if test="updateUsername != null  and updateUsername != ''">#{updateUsername},</if>
+            <if test="updateDatetime != null ">#{updateDatetime},</if>
+            <if test="updateIp != null  and updateIp != ''">#{updateIp},</if>
+         </trim>
+    </insert>
+
+    <update id="updateJlPartition" parameterType="JlPartition">
+        update jl_partition
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="proId != null ">pro_id = #{proId},</if>
+            <if test="proName != null  and proName != ''">pro_name = #{proName},</if>
+            <if test="secId != null ">sec_id = #{secId},</if>
+            <if test="secName != null  and secName != ''">sec_name = #{secName},</if>
+            <if test="secCode != null  and secCode != ''">sec_code = #{secCode},</if>
+            <if test="unitName != null  and unitName != ''">unit_name = #{unitName},</if>
+            <if test="unitCode != null  and unitCode != ''">unit_code = #{unitCode},</if>
+            <if test="unitParentId != null ">unit_parent_id = #{unitParentId},</if>
+            <if test="unitLevel != null ">unit_level = #{unitLevel},</if>
+            <if test="unitLevelName != null  and unitLevelName != ''">unit_level_name = #{unitLevelName},</if>
+            <if test="unitOrder != null ">unit_order = #{unitOrder},</if>
+            <if test="finishState != null ">finish_state = #{finishState},</if>
+            <if test="cuName != null  and cuName != ''">cu_name = #{cuName},</if>
+            <if test="cpName != null  and cpName != ''">cp_name = #{cpName},</if>
+            <if test="ccpName != null  and ccpName != ''">ccp_name = #{ccpName},</if>
+            <if test="ckName != null  and ckName != ''">ck_name = #{ckName},</if>
+            <if test="cckName != null  and cckName != ''">cck_name = #{cckName},</if>
+            <if test="disabled != null ">disabled = #{disabled},</if>
+            <if test="createUserid != null ">create_userid = #{createUserid},</if>
+            <if test="createUsername != null  and createUsername != ''">create_username = #{createUsername},</if>
+            <if test="createDatetime != null ">create_datetime = #{createDatetime},</if>
+            <if test="createIp != null  and createIp != ''">create_ip = #{createIp},</if>
+            <if test="updateUserid != null ">update_userid = #{updateUserid},</if>
+            <if test="updateUsername != null  and updateUsername != ''">update_username = #{updateUsername},</if>
+            <if test="updateDatetime != null ">update_datetime = #{updateDatetime},</if>
+            <if test="updateIp != null  and updateIp != ''">update_ip = #{updateIp},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteJlPartitionById" parameterType="Long">
+        delete from jl_partition where id = #{id}
+    </delete>
+
+    <delete id="deleteJlPartitionByIds" parameterType="String">
+        delete from jl_partition where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>
